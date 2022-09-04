@@ -24,12 +24,8 @@ const App = () => {
         <Route path="/org/:id" element={<OrgDetails />} />
         <Route path="signUp" element={<SignUp />} />
         <Route path="login" element={<Login />} />
-        <Route path='events' element={<Event/>}/>
-<<<<<<< HEAD
-        <Route path="event/:id" element={<EventDetails/>}/>
-=======
-<Route path="events/:id" element={<EventDetails/>}/>
->>>>>>> 9d23eb00c6b9235bb1bab54bd74ee7148a3f1353
+        <Route path="events" element={<Event />} />
+        <Route path="events/:id" element={<EventDetails />} />
       </Routes>
     </div>
   );

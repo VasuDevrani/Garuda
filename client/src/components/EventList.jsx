@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import events from "../constants/eventList";
 import { Link } from "react-router-dom";
 

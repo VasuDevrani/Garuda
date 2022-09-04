@@ -28,7 +28,7 @@ const RegisterUser = async (req, res) => {
       email: req.body.email,
       college: req.body.college,
       isStudent: req.body.isStudent,
-      image: req.body.image,
+      poster_path: req.body.poster_path,
       location: req.body.location,
       isStudent: isStudent,
       isOrganizer: isOrganizer,
