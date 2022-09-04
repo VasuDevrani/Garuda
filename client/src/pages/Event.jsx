@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../style";
 import { FaSearch } from "react-icons/fa";
 import EventList from "../components/EventList";
+import { Button, Drawer } from "@mui/material";
+import CreateEvent from "../components/CreateEvent";
+
+const names = ["delhi", "mumbai"];
 
 export default function Event() {
+  const [personName, setPersonName] = useState([]);
+  const [bottom, setBottom] = useState(false);
+
+  const toggleDrawer = () => {
+    setBottom(!bottom);
+  };
+
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(typeof value === "string" ? value.split(",") : value);
+  };
+
   return (
     <div
       className={`flex flex-col ${styles.boxWidth} mx-auto p-4 md:px-10 font-poppins`}
@@ -23,15 +41,28 @@ export default function Event() {
         </div>
       </div>
       {/* sort */}
+      <div>
+        <Button variant="contained" color="secondary" onClick={toggleDrawer}>
+          CREATE EVENT
+        </Button>
+      </div>
       {/* list */}
       <p className="my-10 text-white relative text-2xl uppercase after:bg-slate-500 after:absolute after:w-[20%] after:h-[3px] after:left-0 after:bottom-0">
         Open
       </p>
-        <EventList/>
-        <p className="my-14 text-white relative text-2xl uppercase after:bg-slate-500 after:absolute after:w-[20%] after:h-[3px] after:left-0 after:bottom-0 ">
+      <EventList />
+      <p className="my-14 text-white relative text-2xl uppercase after:bg-slate-500 after:absolute after:w-[20%] after:h-[3px] after:left-0 after:bottom-0 ">
         Past
       </p>
-      <EventList/>
+      <EventList />
+      {/* org form */}
+      <Drawer
+        anchor={'bottom'}
+        open={bottom}
+        onClose={toggleDrawer}
+      >
+        <CreateEvent toggleDrawer={toggleDrawer}/>
+      </Drawer>
     </div>
   );
 }

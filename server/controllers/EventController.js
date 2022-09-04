@@ -48,7 +48,6 @@ const getEventInfo = async (req, res) => {
 const updateInfo = async (req, res) => {
   try {
     const data = await Event.findByIdAndUpdate(req.body.id, req.body);
-    console.log(data);
     res.status(200).json(data);
   } catch (err) {
     res.status(404).json({ message: err.message });

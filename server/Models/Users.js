@@ -14,7 +14,7 @@ const UserSchema = new Schema({
   email: { type: String, require: true },
   location: { type: String, trim: true },
   bio: { type: String, trim: true },
-  isStudent: { type: Boolean, required: true, default: true },
+  isStudent: { type: Boolean, required: true, default: false },
   isOrganizer: { type: Boolean, required: false, default: false},
   isSponsor: { type: Boolean, required: false, default: false },
 });

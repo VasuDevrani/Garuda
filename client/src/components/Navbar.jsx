@@ -1,35 +1,39 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { close, menu } from "../assets";
 import { navLinks } from "../constants";
-import { Link } from "react-router-dom";
-import logo from '../assets/logo1.png'
+import { Link, useNavigate } from "react-router-dom";
+import logo from "../assets/logo1.png";
+import { Store } from "../store";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const { state, dispatch } = useContext(Store);
+  const { userInfo } = state;
+  const navigate = useNavigate();
+
+  const handlLogout = () => {
+    if(userInfo.length <= 0)
+      return;
+    dispatch({type: "SIGN_OUT"});
+    navigate('/login')
+  }
 
   return (
     <nav className="w-full flex py-6 justify-between items-center navbar">
       <img src={logo} alt="" className="w-[150px] h-[52px] invert" />
       <ul className="list-none sm:flex hidden justify-end items-center flex-1">
-        {/* map over navlinks-dynamic block of code-to instantly return something use parenthesis */}
-        {navLinks.map((nav, index) => (
-          <li
-            key={nav.id}
-            className={`font-poppins
-            font-normal
-            cursor-pointer
-            text-[16px] 
-            ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}
-            text-white
-            `}
-          >
-            <Link to={nav.id}>
-              {" "}
-              {/*dynamic string*/}
-              {nav.title}
-            </Link>
-          </li>
-        ))}
+        <li className="font-poppins font-normal cursor-pointer text-[16px] mr-10 text-white">
+          <Link to="/">Home</Link>
+        </li>
+        <li className="font-poppins font-normal cursor-pointer text-[16px] mr-10 text-white">
+          <Link to="/events">Events</Link>
+        </li>
+        <li className="font-poppins font-normal cursor-pointer text-[16px] mr-10 text-white">
+          <Link to="/org">Organizations</Link>
+        </li>
+        <li className="font-poppins font-normal cursor-pointer text-[16px] mr-10 text-white">
+          {userInfo ? <div  onClick={handlLogout}>Logout</div>  : <Link to="/login">Login</Link>}
+        </li>
       </ul>
 
       <div className="sm:hidden flex flex-1 justify-end items-center">
@@ -49,24 +53,18 @@ const Navbar = () => {
         top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar z-50`}
         >
           <ul className="list-none flex flex-col justify-end items-center flex-1">
-            {navLinks.map((nav, index) => (
-              <li
-                key={nav.id}
-                className={`font-poppins
-                  font-normal
-                  cursor-pointer
-                  text-[16px] 
-                  ${index === navLinks.length - 1 ? "mr-0" : "mb-4"}
-                  text-white
-                  `}
-              >
-                <Link to={nav.id}>
-                  {" "}
-                  {/*dynamic string*/}
-                  {nav.title}
-                </Link>
-              </li>
-            ))}
+            <li className="font-poppins font-normal cursor-pointer text-[16px] mr-4 text-white">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="font-poppins font-normal cursor-pointer text-[16px] mr-4 text-white">
+              <Link to="/events">Events</Link>
+            </li>
+            <li className="font-poppins font-normal cursor-pointer text-[16px] mr-4 text-white">
+              <Link to="/org">Organizations</Link>
+            </li>
+            <li className="font-poppins font-normal cursor-pointer text-[16px] mr-4 text-white">
+              {userInfo ? "Logout" : <Link to="/login">Login</Link>}
+            </li>
           </ul>
         </div>
       </div>

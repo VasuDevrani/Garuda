@@ -3,14 +3,12 @@ const express =require('express');
 const { body } = require('express-validator');
 const {RegisterUser,loginUser,getUserbyId,updateUser,deleteUser,getAllUser} = require('../Controllers/UserController.js')
 const Router=express.Router();
-Router.get('/:id',getUserbyId)
+Router.get('/user/:id',getUserbyId)
 Router.get('/allUsers',getAllUser)
-Router.post('/signUp',   body('email').isEmail(),
-body('name').isLength({min:3}),
-body('password').isLength({ min: 5 }),RegisterUser);
+Router.post('/signUp',RegisterUser);
 Router.post('/login',loginUser)
-Router.put('/:id',updateUser)
-Router.delete('/:id',deleteUser)
+Router.put('/user/:id',updateUser)
+Router.delete('/user/:id',deleteUser)
 
 module.exports =Router; 
 

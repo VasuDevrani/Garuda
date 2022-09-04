@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
 import styles from "../style";
 import orgList from "../constants/orgList";
 import { Drawer, IconButton } from "@mui/material";
@@ -8,16 +7,38 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import OrgForm from "../components/OrgForm";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Store } from "../store";
+import axios from "axios";
 
 export default function Organizer() {
   const search = useRef(null);
 
+  const { state, dispatch } = useContext(Store);
+  const { userInfo } = state;
+
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState("");
-  const [bottom,  setBottom] = useState(false);
+  const [bottom, setBottom] = useState(false);
+  const [org, setOrg] = useState(userInfo.isOrganizer || false);
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    const getOrgList = async() => {
+      try{
+        const {data} = await axios.get('/auth/allUsers');
+
+        console.log(data);
+      }catch(err){
+        console.log(err);
+      }
+    }
+
+    getOrgList();
+  }, [])
 
   const toggleDrawer = () => {
-      setBottom(!bottom);
+    setBottom(!bottom);
   };
 
   const handleChange = (event) => {
@@ -68,31 +89,40 @@ export default function Organizer() {
             <Button>Oldest</Button>
           </ButtonGroup>
           <ButtonGroup variant="contained" aria-label="outlined button group">
-            <Button color="secondary" onClick={toggleDrawer}>Create New</Button>
+            {org && (
+              <Button color="secondary" onClick={toggleDrawer}>
+                Create New
+              </Button>
+            )}
           </ButtonGroup>
         </div>
       </div>
       {/* list */}
       <div className="list grid grid-cols-15 gap-7 my-10 items-center justify-center">
-        {orgList.map((org) => (
-          <div key={org.id} className="grid grid-cols-1 rounded-3xl border border-gradient p-2 text-center hover:scale-105 duration-300">
-            <Link to={`/org/${org.id}`}>
-            <img src={org.image} alt="image" className="rounded-3xl " />
-            </Link>
-            <Link to={`/org/${org.id}`}>
-            <h1 className="text-white text-xl md:text-2xl mt-3">{org.name}</h1>
-            </Link>
-            <p className="text-white">{org.college}</p>
-          </div>
-        ))}
+        {orgList.length !== 0 ? (
+          orgList.map((org) => (
+            <div
+              key={org.id}
+              className="grid grid-cols-1 rounded-3xl border border-gradient p-2 text-center hover:scale-105 duration-300"
+            >
+              <Link to={`/org/${org.id}`}>
+                <img src={org.image} alt="image" className="rounded-3xl " />
+              </Link>
+              <Link to={`/org/${org.id}`}>
+                <h1 className="text-white text-xl md:text-2xl mt-3">
+                  {org.name}
+                </h1>
+              </Link>
+              <p className="text-white">{org.college}</p>
+            </div>
+          ))
+        ) : (
+          <h1>No Data exist</h1>
+        )}
       </div>
       {/* org form */}
-      <Drawer
-        anchor={'bottom'}
-        open={bottom}
-        onClose={toggleDrawer}
-      >
-        <OrgForm addOrg={addOrg} toggleDrawer={toggleDrawer}/>
+      <Drawer anchor={"bottom"} open={bottom} onClose={toggleDrawer}>
+        <OrgForm addOrg={addOrg} toggleDrawer={toggleDrawer} />
       </Drawer>
     </div>
   );
