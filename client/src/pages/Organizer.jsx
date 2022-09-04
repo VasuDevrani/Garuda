@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import React, { useRef, useState } from "react";
 import styles from "../style";
 import orgList from "../constants/orgList";
 import { Drawer, IconButton } from "@mui/material";

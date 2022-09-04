@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import { Navbar } from "./components";
 import OrgDetails from "./pages/OrgDetails";
 import Event from "./pages/Event";
+import EventDetails from "./pages/EventDetails";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="signUp" element={<SignUp />} />
         <Route path="login" element={<Login />} />
         <Route path='events' element={<Event/>}/>
+        <Route path="event/:id" element={<EventDetails/>}/>
       </Routes>
     </div>
   );

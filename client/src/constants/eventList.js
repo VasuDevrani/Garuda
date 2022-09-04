@@ -1,5 +1,6 @@
 const events = [
     {
+        _id: '1',
         eventType: 'hackathon',
         organizer: 'lnmiit',
         title: 'mesoHack 2.0',
@@ -14,6 +15,7 @@ const events = [
         sponsors: ['facebook', 'microsoft', 'hungama']
     },
     {
+        _id: '2',
         eventType: 'hackathon',
         organizer: 'lnmiit',
         title: 'mesoHack 2.0',
@@ -28,6 +30,7 @@ const events = [
         sponsors: ['facebook', 'microsoft', 'hungama']
     },
     {
+        _id: '3',
         eventType: 'hackathon',
         organizer: 'lnmiit',
         title: 'mesoHack 2.0',
@@ -42,6 +45,7 @@ const events = [
         sponsors: ['facebook', 'microsoft', 'hungama']
     },
     {
+        _id: '4',
         eventType: 'hackathon',
         organizer: 'lnmiit',
         title: 'mesoHack 2.0',
