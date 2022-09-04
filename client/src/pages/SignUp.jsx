@@ -25,12 +25,29 @@ const SignUp = () => {
                             class="block border border-grey-light w-full p-3 rounded mb-4"
                             name="password"
                             placeholder="Password" />
-                        <input 
+                   <input 
                             type="password"
                             class="block border border-grey-light w-full p-3 rounded mb-4"
                             name="confirm_password"
                             placeholder="Confirm Password" />
-    
+                          <div class="my-3">   <input
+                type="checkbox"
+                class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                id="exampleCheck2"
+              />
+              <label class="form-check-label inline-block text-gray-800" for="exampleCheck2"
+                >Are you a Student?</label
+              >
+                            </div>  
+                            <div class="my-3">    <input
+                type="checkbox"
+                class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                id="exampleCheck2"
+              />
+              <label class="form-check-label inline-block text-gray-800" for="exampleCheck2"
+                >Are you a Organizer?</label
+              ></div>
+          
                         <button
                             type="submit"
                             class="w-full text-center py-3 rounded bg- text-black border-solid border-2 border-sky-500   hover:bg-green-dark focus:outline-none my-1"

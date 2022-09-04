@@ -15,9 +15,9 @@ const UserSchema = new Schema({
   location: { type: String, trim: true },
   bio: { type: String, trim: true },
   isStudent: { type: Boolean, required: true, default: true },
-  isOrganizer: { type: Boolean, required: false, default: false },
+  isOrganizer: { type: Boolean, required: false, default: false},
   isSponsor: { type: Boolean, required: false, default: false },
 });
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model("User", UserSchema)
 module.exports = User;
