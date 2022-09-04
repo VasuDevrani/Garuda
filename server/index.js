@@ -23,7 +23,7 @@ mongoose.connect("mongodb+srv://Vasudevrani:mongoAtlasByVasu@cluster0.pxefb1c.mo
 const UserRoute = require("./Routes/UserRoutes.js");
 const EventRoute = require("./routes/EventRoutes");
 
-app.use('/',UserRoute);
+app.use('/auth',UserRoute);
 app.use("/event", EventRoute);
 
 app.get("*", (req, res) => {
