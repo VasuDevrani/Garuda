@@ -41,9 +41,12 @@ export default function Event() {
         </div>
       </div>
       {/* sort */}
-      <div>
+      <div className="flex gap-2 items-center">
         <Button variant="contained" color="secondary" onClick={toggleDrawer}>
           CREATE EVENT
+        </Button>
+        <Button variant="contained" color="secondary">
+          SET REGION
         </Button>
       </div>
       {/* list */}
