@@ -25,7 +25,7 @@ const App = () => {
         <Route path="signUp" element={<SignUp />} />
         <Route path="login" element={<Login />} />
         <Route path='events' element={<Event/>}/>
-        <Route path="event/:id" element={<EventDetails/>}/>
+<Route path="events/:id" element={<EventDetails/>}/>
       </Routes>
     </div>
   );
