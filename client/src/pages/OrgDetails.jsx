@@ -27,7 +27,7 @@ export default function OrgDetails() {
   const [bottom, setBottom] = useState(false);
 
   const toggleDrawer = () => {
-      setBottom(!bottom);
+    setBottom(!bottom);
   };
 
   useEffect(() => {
@@ -41,12 +41,20 @@ export default function OrgDetails() {
     >
       {orgData ? (
         <div>
-          <DetailsHero data={orgData} toggleDrawer={toggleDrawer}/>
+          <DetailsHero data={orgData} toggleDrawer={toggleDrawer} />
           <div className="px-4">
             {/* members */}
-            <ProfileGroup data={orgData.members} title="members" toggleDrawer={toggleDrawer}/>
+            <ProfileGroup
+              data={orgData.members}
+              title="members"
+              toggleDrawer={toggleDrawer}
+            />
             {/* sponsors */}
-            <ProfileGroup data={orgData.sponsors} title="sponsors" toggleDrawer={toggleDrawer}/>
+            <ProfileGroup
+              data={orgData.sponsors}
+              title="sponsors"
+              toggleDrawer={toggleDrawer}
+            />
             {/* events */}
             <div className="flex flex-col justify-center items-center gap-0 my-20">
               <img src={decor} alt="" className="" />
@@ -59,15 +67,35 @@ export default function OrgDetails() {
               <div className="flex flex-row gap-2 items-center">
                 <BsBox /> <span>Socials</span>
               </div>
-              <Button variant="contained" onClick={toggleDrawer}>Update</Button>
+              <Button variant="contained" onClick={toggleDrawer}>
+                Update
+              </Button>
             </div>
             <div className="socials flex flex-col text-3xl gap-3 mb-10">
-              <BsDiscord color="skyblue" />
-              <BsFacebook color="blue" />
-              <BsInstagram color="red" />
-              <BsMailbox color="white" />
-              <BsTwitter color="blue" />
-              <BsGlobe color="grey" />
+              <div className="flex flex-row items-center gap-3 text-white">
+                <BsDiscord color="skyblue" />
+                <p>http://nsut.discord.com</p>
+              </div>
+              <div className="flex flex-row items-center gap-3 text-white">
+                <BsFacebook color="blue" />
+                <p>http://nsut.facebook.com</p>
+              </div>
+              <div className="flex flex-row items-center gap-3 text-white">
+                <BsInstagram color="red" />
+                <p>http://nsut.insta.com</p>
+              </div>
+              <div className="flex flex-row items-center gap-3 text-white">
+                <BsMailbox color="white" />
+                <p>http://nsut@gmail.com</p>
+              </div>
+              <div className="flex flex-row items-center gap-3 text-white">
+                <BsTwitter color="blue" />
+                <p>http://nsut.twitter.com</p>
+              </div>
+              <div className="flex flex-row items-center gap-3 text-white">
+                <BsGlobe color="grey" />
+                <p>http://nsut.com</p>
+              </div>
             </div>
             <ContactUs />
           </div>
@@ -78,12 +106,8 @@ export default function OrgDetails() {
         </div>
       )}
       {/* org form */}
-      <Drawer
-        anchor={'bottom'}
-        open={bottom}
-        onClose={toggleDrawer}
-      >
-        <UpdateOrg toggleDrawer={toggleDrawer}/>
+      <Drawer anchor={"bottom"} open={bottom} onClose={toggleDrawer}>
+        <UpdateOrg toggleDrawer={toggleDrawer} />
       </Drawer>
     </div>
   );

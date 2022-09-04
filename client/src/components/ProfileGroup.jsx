@@ -14,11 +14,13 @@ export default function ProfileGroup({ data, title, toggleDrawer }) {
       {data ? (
         <div className="flex flex-row overflow-scroll gap-5 my-5">
           {data.map((item) => (
+            <div className="w-[200px] h-[200px] rounded-full cursor-pointer flex">
             <img
               src={item.img}
               alt=""
-              className="w-32 sm:w-48 rounded-full cursor-pointer"
+              className="object-cover rounded-full"
             />
+            </div>
           ))}
         </div>
       ) : (

@@ -14,7 +14,7 @@ const SignUp = () => {
     email: "",
     password: "",
     location: "",
-    image:
+    poster_path:
       "https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png",
     userType: "student",
     college: "",
@@ -40,7 +40,8 @@ const SignUp = () => {
           return res.json();
         })
         .then((data) => {
-          setUserData({ ...userData, image: data.url.toString() });
+          console.log(data.url.toString());
+          setUserData({ ...userData, poster_path: data.url.toString() });
           setLoad(false);
         })
         .catch((err) => {
@@ -65,7 +66,7 @@ const SignUp = () => {
         const { data } = await axios.post("/auth/signUp", userData);
         localStorage.setItem('userinfo', JSON.stringify(data));
         dispatch({ type: "SIGN_IN", payload: data });
-        // reset();
+        reset();
         navigate('/');
       } catch (err) {
         console.log(err);

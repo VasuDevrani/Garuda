@@ -20,22 +20,24 @@ export default function Organizer() {
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState("");
   const [bottom, setBottom] = useState(false);
-  const [org, setOrg] = useState(userInfo.isOrganizer || false);
-  const [list, setList] = useState([]);
+  const [org, setOrg] = useState(
+    userInfo.isOrganizer ? userInfo.isOrganizer : false
+  );
+  // const [list, setList] = useState([]);
 
-  useEffect(() => {
-    const getOrgList = async() => {
-      try{
-        const {data} = await axios.get('/auth/allUsers');
+  // useEffect(() => {
+  //   const getOrgList = async () => {
+  //     try {
+  //       const { data } = await axios.get("/auth/allUsers");
+  //       const res = data.filter((org) => org.isOrganizer === true);
+  //       setList(res);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
 
-        console.log(data);
-      }catch(err){
-        console.log(err);
-      }
-    }
-
-    getOrgList();
-  }, [])
+  //   getOrgList();
+  // }, []);
 
   const toggleDrawer = () => {
     setBottom(!bottom);
@@ -103,10 +105,14 @@ export default function Organizer() {
           orgList.map((org) => (
             <div
               key={org.id}
-              className="grid grid-cols-1 rounded-3xl border border-gradient p-2 text-center hover:scale-105 duration-300"
+              className="grid grid-cols-1 items-center justify-center rounded-3xl border border-gradient p-2 text-center hover:scale-105 duration-300"
             >
               <Link to={`/org/${org.id}`}>
-                <img src={org.image} alt="image" className="rounded-3xl " />
+                <img
+                  src={org.image}
+                  alt="image"
+                  className="rounded-3xl object-cover"
+                />
               </Link>
               <Link to={`/org/${org.id}`}>
                 <h1 className="text-white text-xl md:text-2xl mt-3">

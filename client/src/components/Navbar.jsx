@@ -32,7 +32,7 @@ const Navbar = () => {
           <Link to="/org">Organizations</Link>
         </li>
         <li className="font-poppins font-normal cursor-pointer text-[16px] mr-10 text-white">
-          {userInfo ? <div  onClick={handlLogout}>Logout</div>  : <Link to="/login">Login</Link>}
+          {userInfo ? <div onClick={handlLogout}>Logout</div>  : <Link to="/login">Login</Link>}
         </li>
       </ul>
 
