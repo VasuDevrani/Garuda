@@ -20,9 +20,6 @@ export default function Organizer() {
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState("");
   const [bottom, setBottom] = useState(false);
-  const [org, setOrg] = useState(
-    userInfo.isOrganizer ? userInfo.isOrganizer : false
-  );
   // const [list, setList] = useState([]);
 
   // useEffect(() => {
@@ -91,11 +88,9 @@ export default function Organizer() {
             <Button>Oldest</Button>
           </ButtonGroup>
           <ButtonGroup variant="contained" aria-label="outlined button group">
-            {org && (
-              <Button color="secondary" onClick={toggleDrawer}>
-                Create New
-              </Button>
-            )}
+            <Button color="secondary" onClick={toggleDrawer}>
+              Create New
+            </Button>
           </ButtonGroup>
         </div>
       </div>
